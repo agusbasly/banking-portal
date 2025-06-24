@@ -1,0 +1,60 @@
+<!-- account-form.component.html -->
+<div class="page-center">
+  <mat-card class="form-card">
+
+    <h2 class="title">Crear nueva cuenta</h2>
+
+    <form #form="ngForm" (ngSubmit)="guardar()" class="form-grid">
+
+      <!-- Nombre -->
+      <label for="nombreDueno" class="form-label">Nombre del dueño *</label>
+      <mat-form-field appearance="outline"
+                      class="form-input tall-field">
+        <input matInput id="nombreDueno"
+               name="nombreDueno"
+               [(ngModel)]="cuenta.nombreDueno"
+               required />
+      </mat-form-field>
+
+      <!-- Email -->
+      <label for="email" class="form-label">Email *</label>
+      <mat-form-field appearance="outline"
+                      class="form-input tall-field">
+        <input matInput id="email"
+               type="email"
+               name="email"
+               [(ngModel)]="cuenta.email"
+               required email />
+      </mat-form-field>
+
+      <!-- Número de cuenta -->
+      <label for="numeroCuenta" class="form-label">Número de cuenta *</label>
+      <mat-form-field appearance="outline"
+                      class="form-input tall-field">
+        <input matInput id="numeroCuenta"
+               name="numeroCuenta"
+               [(ngModel)]="cuenta.numeroCuenta"
+               required />
+      </mat-form-field>
+
+      <!-- Balance -->
+      <label for="balance" class="form-label">Balance inicial *</label>
+      <mat-form-field appearance="outline"
+                      class="form-input tall-field">
+        <input matInput id="balance"
+               type="number"
+               name="balance"
+               [(ngModel)]="cuenta.balance"
+               required min="0" />
+      </mat-form-field>
+
+      <!-- Botones -->
+      <div class="button-row">
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+        <button mat-stroked-button color="warn" type="button" routerLink="/accounts">Cancelar</button>
+      </div>
+
+    </form>
+  </mat-card>
+</div>
+

@@ -1,0 +1,58 @@
+/* account-form.component.scss */
+
+/* --- LAYOUT GENERAL ---------------------------------------------- */
+.page-center {
+  display: flex;
+  justify-content: center;       // centra horizontal
+  align-items: center;       // arriba; usa center si quieres totalmente centrado
+  min-height: 100vh;             // altura pantalla
+  background: #f5f6fa;           // gris muy clarito
+  padding: 2rem;
+}
+
+/* --- TARJETA ------------------------------------------------------ */
+.form-card {
+  width: 640px;
+  padding: 2.5rem 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+/* --- GRID DE FORM ------------------------------------------------- */
+.form-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;  // etiquetas a la izq., inputs a la der.
+  row-gap: 1.25rem;
+  column-gap: 2rem;
+}
+
+.form-label {
+  align-self: center;
+  font-weight: 500;
+}
+
+/* inputs más altos */
+.tall-field .mat-form-field-flex {
+  height: 80px;                   // ↑ altura (default ~40)
+  align-items: center;
+}
+
+/* ancho completo para el input */
+.form-input {
+  width: 100%;
+}
+
+/* --- BOTONES ------------------------------------------------------ */
+.button-row {
+  grid-column: 1 / -1;            // ocupa toda la fila
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}

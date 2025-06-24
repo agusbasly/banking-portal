@@ -1,0 +1,45 @@
+# === GENERAL ===
+.DS_Store
+Thumbs.db
+*.log
+
+# === IDEs ===
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# === FRONTEND ===
+frontend/node_modules/
+frontend/dist/
+frontend/tmp/
+frontend/out-tsc/
+frontend/coverage/
+frontend/.angular
+frontend/.sass-cache/
+frontend/.editorconfig
+frontend/package-lock.json
+frontend/yarn.lock
+frontend/testem.log
+frontend/karma.conf.js
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+
+# Angular profiling
+frontend/chrome-profiler-events*.json
+frontend/speed-measure-plugin*.json
+
+# === BACKEND ===
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/.env
+*.class
+*.jar
+*.war
+
+# === LOGS (tu carpeta logs/) ===
+logs/
+
+.vscode/
