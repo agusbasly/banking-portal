@@ -1,33 +1,36 @@
-networks:
-  app-tier:
-    driver: bridge
+version: '3.8'
 
 services:
-  redis:
-    image: 'bitnami/redis:latest'
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+      - redis
     environment:
-      ALLOW_EMPTY_PASSWORD: 'yes'
-    networks:
-      - app-tier
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/banking
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
 
   mongo:
-    image: mongo
-    restart: always
+    image: mongo:6
     ports:
       - "27017:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-    networks:
-      - app-tier
+    volumes:
+      - mongo_data:/data/db
 
-  mongo-express:
-    image: mongo-express
-    restart: always
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@192.168.88.138:27017/
-      ME_CONFIG_BASICAUTH: 'false'
-    networks:
-      - app-tier
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+volumes:
+  mongo_data:
