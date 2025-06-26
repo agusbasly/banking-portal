@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Editar saldo</h2>
+
+<mat-dialog-content>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Nuevo saldo</mat-label>
+    <input matInput type="number" [(ngModel)]="data.balance">
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="guardar()">Guardar</button>
+</mat-dialog-actions>

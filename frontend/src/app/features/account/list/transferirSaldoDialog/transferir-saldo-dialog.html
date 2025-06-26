@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Transferir saldo</h2>
+
+<mat-dialog-content>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Cuenta destino</mat-label>
+    <mat-select [(ngModel)]="transferencia.destinoId">
+      <mat-option *ngFor="let c of cuentas" [value]="c.id">
+        {{ c.numeroCuenta }} - {{ c.nombreDueno }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Monto</mat-label>
+    <input matInput type="number" [(ngModel)]="transferencia.monto">
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="transferir()">Transferir</button>
+</mat-dialog-actions>

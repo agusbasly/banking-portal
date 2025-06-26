@@ -17,7 +17,23 @@ export class AccountService {
   }
 
   crearCuenta(cuenta: AccountCreateDTO): Observable<Account> {
-  return this.http.post<Account>(this.apiUrl, cuenta);
+    return this.http.post<Account>(this.apiUrl, cuenta);
+  }
+
+  getMovimientosByCuentaId(cuenta: string): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8080/movimientos/${cuenta}`);
+  }
+
+  deleteAccount(id: string): Observable<void> {
+  return this.http.delete<void>(`http://localhost:8080/accounts/${id}`);
+  }
+
+  updateBalance(id: string, nuevoBalance: number): Observable<Account> {
+  return this.http.put<Account>(`http://localhost:8080/accounts/${id}?saldo=${nuevoBalance}`, null);
+  }
+
+  transferirSaldo(dto: { origenId: string, destinoId: string, monto: number }): Observable<void> {
+  return this.http.post<void>('http://localhost:8080/transferencias', dto);
 }
 
 }

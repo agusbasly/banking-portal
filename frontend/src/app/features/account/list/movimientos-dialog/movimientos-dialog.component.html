@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Movimientos</h2>
+<mat-dialog-content>
+  <table class="tabla-movimientos" *ngIf="data.movimientos?.length > 0; else sinMovimientos">
+    <tr>
+      <th>Tipo</th>
+      <th>Monto</th>
+      <th>Descripción</th>
+      <th>Fecha</th>
+    </tr>
+    <tr *ngFor="let m of data.movimientos">
+      <td>{{ m.tipo }}</td>
+      <td>${{ m.monto }}</td>
+      <td>{{ m.descripcion }}</td>
+      <td>{{ m.fecha | date:'short' }}</td>
+    </tr>
+  </table>
+
+  <ng-template #sinMovimientos>
+    <p>No hay movimientos para esta cuenta.</p>
+  </ng-template>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>

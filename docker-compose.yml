@@ -1,0 +1,33 @@
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  redis:
+    image: 'bitnami/redis:latest'
+    environment:
+      ALLOW_EMPTY_PASSWORD: 'yes'
+    networks:
+      - app-tier
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - app-tier
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@192.168.88.138:27017/
+      ME_CONFIG_BASICAUTH: 'false'
+    networks:
+      - app-tier
