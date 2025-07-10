@@ -3,12 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Account } from '../models/account.model';
 import { AccountCreateDTO } from '../models/account-create.dto';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  private apiUrl = 'http://localhost:8080/accounts'; 
+  private apiUrl = `${environment.apiBaseUrl}/accounts`;
+  private movimientosUrl = `${environment.apiBaseUrl}/movimientos`;
+  private transferenciasUrl = `${environment.apiBaseUrl}/transferencias`;
 
   constructor(private http: HttpClient) {}
 
@@ -21,19 +24,18 @@ export class AccountService {
   }
 
   getMovimientosByCuentaId(cuenta: string): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:8080/movimientos/${cuenta}`);
+    return this.http.get<any[]>(`${this.movimientosUrl}/${cuenta}`);
   }
 
   deleteAccount(id: string): Observable<void> {
-  return this.http.delete<void>(`http://localhost:8080/accounts/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
   updateBalance(id: string, nuevoBalance: number): Observable<Account> {
-  return this.http.put<Account>(`http://localhost:8080/accounts/${id}?saldo=${nuevoBalance}`, null);
+    return this.http.put<Account>(`${this.apiUrl}/${id}?saldo=${nuevoBalance}`, null);
   }
 
   transferirSaldo(dto: { origenId: string, destinoId: string, monto: number }): Observable<void> {
-  return this.http.post<void>('http://localhost:8080/transferencias', dto);
-}
-
+    return this.http.post<void>(this.transferenciasUrl, dto);
+  }
 }
